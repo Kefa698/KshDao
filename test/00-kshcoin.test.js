@@ -80,4 +80,22 @@ const { developmentChains } = require("../helper-hardhat-config")
                   )
               })
           })
+          describe("burn", function () {
+              it("burns", async function () {
+                  const startingBalance = await kshcoin.balanceOf(deployer.address)
+
+                  const burnAmount = ethers.utils.parseUnits("10", "ether")
+                  const configureBurnTx = await kshcoin.configureMinter(
+                      deployer.address,
+                      burnAmount
+                  )
+                  await configureBurnTx.wait(1)
+
+                  const burnTx = await kshcoin.burn(burnAmount)
+                  await burnTx.wait(1)
+
+                  const endingBalance = await kshcoin.balanceOf(deployer.address)
+                  assert(startingBalance.sub(burnAmount).toString() == endingBalance.toString())
+              })
+          })
       })
