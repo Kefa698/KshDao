@@ -73,15 +73,14 @@ module.exports = {
         },
     },
     solidity: {
-        compilers: [
-            {
-                version: "0.8.7",
-            },
-            {
-                version: "0.6.6",
-            },
-        ],
-    },
+        version: "0.8.9",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
     mocha: {
         timeout: 200000, // 200 seconds max for running tests
     },
