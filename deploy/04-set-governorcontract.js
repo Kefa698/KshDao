@@ -7,7 +7,7 @@ const {
 const { verify } = require("../utils/verify")
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
-    const { deploy, log, get } = deployments
+    const { log } = deployments
     const { deployer } = await getNamedAccounts()
     const governor = await ethers.getContract("GovernorContract", deployer)
     const timelock = await ethers.getContract("TimeLock", deployer)
@@ -29,11 +29,6 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     await revokeTx.waitBlockConfirmations
     //  Now, anything the timelock wants to do has to go through the governance process!
 
-    // Verify the deployment
-    if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
-        log("Verifying...")
-        await verify(GovernorContract.address, args)
-    }
     log("roles set........................................")
     log("----------------------------------------------------")
 }
