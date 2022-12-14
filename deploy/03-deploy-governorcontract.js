@@ -1,4 +1,4 @@
-const { network, ethers } = require("hardhat")
+const { network } = require("hardhat")
 const {
     developmentChains,
     VERIFICATION_BLOCK_CONFIRMATIONS,
@@ -12,7 +12,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deploy, log, get } = deployments
     const { deployer } = await getNamedAccounts()
     const governanceToken = await get("GovernanceToken")
-    const timelock = await get("Timelock")
+    const timelock = await get("TimeLock")
 
     const waitBlockConfirmations = developmentChains.includes(network.name)
         ? 1
@@ -39,3 +39,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     }
     log("----------------------------------------------------")
 }
+module.exports.tags = ["all", "governorcontract"]
