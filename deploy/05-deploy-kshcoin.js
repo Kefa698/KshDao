@@ -21,11 +21,10 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         log("Verifying....................")
         await verify(KshCoin.address, args)
     }
-    const kshContract = await ethers.getContractAt("KshCoin", box.address)
+    const kshContract = await ethers.getContractAt("KshCoin", KshCoin.address)
     const timeLock = await ethers.getContract("TimeLock")
     const transferTx = await kshContract.transferOwnership(timeLock.address)
     await transferTx.wait(1)
-
 
     log("-----------------------------------------------------------------------")
 }
