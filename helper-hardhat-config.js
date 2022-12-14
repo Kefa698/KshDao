@@ -20,6 +20,12 @@ const networkConfig = {
     },
 }
 
+const MIN_DELAY = 3600
+const VOTING_PERIOD = 5
+const VOTING_DELAY = 1
+const QUARAM_PERCANTAGE = 4
+const ADRESSZERO = "0x0000000000000000000000000000000000000000"
+
 const developmentChains = ["hardhat", "localhost"]
 const VERIFICATION_BLOCK_CONFIRMATIONS = 6
 
@@ -27,4 +33,9 @@ module.exports = {
     networkConfig,
     developmentChains,
     VERIFICATION_BLOCK_CONFIRMATIONS,
+    MIN_DELAY,
+    VOTING_PERIOD,
+    VOTING_DELAY,
+    QUARAM_PERCANTAGE,
+    ADRESSZERO,
 }
